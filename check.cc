@@ -18,7 +18,7 @@ Check::Check(Date d, string p, int num, double amt){
 
 // Input and output functions
 void Check::write_check(std::istream& ins){
-	if(&ins == &cin){
+	if(&ins == &cin){ //check if input stream is cin
 		cout << "Please enter the check's date in format DD/MM/YYYY: ";
 		ins >> date;
 		cout << "Please enter the payto: ";
@@ -28,10 +28,10 @@ void Check::write_check(std::istream& ins){
 		getline(ins, payto);
 		cout << "Please enter the check amount: ";
 		ins >> amount;
-	}else{
+	}else{ //else it is a file
 		ins >> checknum;
 		ins >> date;
-		while(ins.peek() == '\n' || ins.peek() == '\r'){
+		while(ins.peek() == '\n' || ins.peek() == '\r'){ //check for and ignore all newlines not removed by >> operator
 			ins.ignore();
 		}
 		getline(ins, payto);
@@ -40,9 +40,9 @@ void Check::write_check(std::istream& ins){
 }
 
 void Check::output(std::ostream& outs)const{
-	if(&outs == &cout){
+	if(&outs == &cout){ //check if input stream is cin
 		outs << " Check Number: " << checknum << endl << " Date: " << date << endl << " Payto: " << payto << endl << " Amount: " << amount << endl;
-	}else{
+	}else{  //else it is a file
 		outs << checknum << endl << date << endl << payto << endl << amount << endl;
 	}
 }
