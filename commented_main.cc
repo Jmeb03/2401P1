@@ -21,7 +21,6 @@
 #include <string>
 #include "check.h"
 #include "checkbook.h"
-//#include "checkbook.h"
 using namespace std;
 
 /* This function shows the user the menu, asks them to enter their 
@@ -47,8 +46,8 @@ int main(){
 
 	// if no file this is first running for this user
     if(!ifs.fail()){ 
-		//mychecks.load_from_file(ifs);
-		//ifs.close(); ------------
+		mychecks.load_from_file(ifs);
+		ifs.close();
     }
 
     do{
@@ -60,7 +59,8 @@ int main(){
 				mychecks.deposit(depamount);
 				break;
 			case 2:
-				mychecks.write_check(ifs);
+				mychecks.write_check(cin);
+				break;
 			case 3:
 				cout << "Your account balance: $" << mychecks.get_balance();
 				break;
@@ -73,23 +73,23 @@ int main(){
 				mychecks.remove(rmnum);
 				break;
 			case 6:
-				//mychecks.number_sort();
+				mychecks.number_sort();
 				break;
-			case 7:    
-				//mychecks.payto_sort();
+			case 7:
+				mychecks.payto_sort();
 				break;
 			case 8:
-				//mychecks.date_sort();
+				mychecks.date_sort();
 				break;
 			case 9:
 				while(cin.peek() == '\n' || cin.peek() == '\r'){
 					cin.ignore(); // clear out leftover newlines
 				}
 				getline(cin, payto_find);
-				//mychecks.show(payto_find);
+				mychecks.show(payto_find);
 				break;
 			case 10:
-				//cout << "Your average check amount: $" << mychecks.average();
+				cout << "Your average check amount: $" << mychecks.average();
 				break;
 			case 0:
 				cout << "Thank you for using the Checkbook program.\n";
@@ -103,10 +103,10 @@ int main(){
 
 	ofs.open(userfile.c_str());
 	if(!ofs.fail()){
-		//mychecks.save(ofs);
+		mychecks.save(ofs);
 	    ofs.close();
 	}
-	ifs.close();
+
 	return 0;
 }
 

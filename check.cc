@@ -29,9 +29,6 @@ void Check::write_check(std::istream& ins){
 		cout << "Please enter the check amount: ";
 		ins >> amount;
 	}else{
-		string junk;
-		ins >> junk;
-		ins >> junk;
 		ins >> checknum;
 		ins >> date;
 		while(ins.peek() == '\n' || ins.peek() == '\r'){
